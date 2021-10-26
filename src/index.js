@@ -15,6 +15,7 @@ const store = {
 function addStationEvent() {
   $("#station-name-input").addEventListener("click", (e) => {
     let stations = [];
+    let test = [];
     stations = JSON.parse(localStorage.getItem("stations"));
     //stations.push($("#station-name-input").value);
     store.setStation(stations, $("#station-name-input").value);
