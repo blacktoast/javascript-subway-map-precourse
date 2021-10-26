@@ -2,6 +2,7 @@ const $ = (e) => document.querySelector(e);
 
 const store = {
   setStation(stations, stationName) {
+    console.log("set test");
     localStorage.setItem(
       "stations",
       JSON.stringify(`${stations} ${stationName}`)
@@ -13,7 +14,7 @@ const store = {
 };
 
 function addStationEvent() {
-  $("#station-name-input").addEventListener("click", (e) => {
+  $("#station-add-button").addEventListener("click", (e) => {
     let stations = [];
     let test = [];
     stations = JSON.parse(localStorage.getItem("stations"));
