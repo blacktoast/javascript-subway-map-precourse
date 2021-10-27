@@ -58,18 +58,56 @@ function initEvent() {
   addStationEvent();
 }
 
+
+function renderStation(stationTable){
+  <tr id=${index}>
+    <td>    
+    </td>
+    <td>
+    <button class="station-delete-button">
+    </button>
+    </td>
+  </tr>
+
+}
+
+function initRenderStation() {
+  let stationTable = $(".station-table-container");
+  const template = `<table border="1">
+                      <thead>
+                      <tr>
+                        <th>역이름</th>
+                        <th>설정</th>
+                        </tr>
+                        </thead>
+                      <tbody>
+                      </tbody>           
+  </table> `;
+  stationTable.innerHTML = template;
+  console.log(stationTable);
+  return renderStation(stationTable);
+}
+
+function render() {
+  initRenderStation();
+}
+
 function subwayApp() {
   initEvent();
+  render();
 }
 
 new subwayApp();
 /**
  *  1. 역관리
- * [] 역 추가 버튼을 누를시 역이름을 로컬 스토리지에 저장
+ * [x] 역 추가 버튼을 누를시 역이름을 로컬 스토리지에 저장
  *    [x] 역 이름 입력시 공백 체크
- *    [] 중복된 역 이름 입력시 체크
+ *    [x] 중복된 역 이름 입력시 체크
  *    []
  * [] 로컬 스토리지에 저장된 데이터를 지하철 역 목록에 출력하기
+ *  [] 로컬스토리지에서 데이터 값을 가져와서 stations 변수에 저장하기
+ *  [] stations 값으로 table 안에서 tr태그로 랜더링하기
+ *  [] 삭제버튼도 같이 렌더링 하기
  * [] 삭제버튼을 누를시 로컬 스토리지에서 삭제하고 다시 렌더링하기
  *
  *
