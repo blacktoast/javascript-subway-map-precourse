@@ -76,10 +76,18 @@ function renderStation(stationTable) {
   </tr>`;
       })
       .join("");
-      console.log((stationTable.querySelector("tbody").innerHTML = template));
-      console.log(template);
+    console.log((stationTable.querySelector("tbody").innerHTML = template));
+    console.log(template);
   }
-  
+}
+
+function initRemoveEvent() {
+  let stationTable = $(".station-table");
+  stationTable.addEventListener("click", (e) => {
+    if (e.target.classList.contains("station-delete-button")) {
+      console.log(e.target.closest("tr"));
+    }
+  });
 }
 
 function initRenderStation() {
@@ -94,9 +102,12 @@ function initRenderStation() {
                       <tbody>
                       </tbody>           
   </table> `;
+
   stationTable.innerHTML = template;
   console.log(stationTable);
-  return renderStation(stationTable);
+  renderStation(stationTable);
+  initRemoveEvent();
+  return;
 }
 
 function render() {
