@@ -12,20 +12,25 @@ const store = {
   },
 };
 
-function checkValidStationName(stationName) {
-  const stations = store.getStation();
-
-  if (stationName) {
-    alert("역 이름을 입력 해주세요");
-    return;
-  }
-}
-function addStation() {
-  stations.push(JSON.parse(localStorage.getItem("stations")));
-  //stations = stations.flat();
+function addStation(stations, stationName) {
+  stations.push(stationName);
   console.log(stations);
-  //stations.push($("#station-name-input").value);
-  store.setStation(stations);
+  store.setItem(stations);
+}
+
+function checkValidStationName(stationName) {
+  let stations = [];
+  if (store.getStation()) {
+    stations.push(store.getStation());
+    stations = stations.flat();
+    if (stations.includes(stationName)) {
+      alert("중복된 역이름 입니다");
+      return;
+    }
+    console.log(stations);
+    return addStation(stations, stationName);
+  }
+  return addStation(stations, stationName);
 }
 
 function getStationName() {
@@ -42,6 +47,7 @@ function getStationName() {
   $("#station-name-input").value = "";
   return checkValidStationName(inputtedStationName);
 }
+
 function addStationEvent() {
   $("#station-add-button").addEventListener("click", (e) => {
     getStationName();
