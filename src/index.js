@@ -58,22 +58,33 @@ function initEvent() {
   addStationEvent();
 }
 
-
-function renderStation(stationTable){
-  <tr id=${index}>
-    <td>    
+function renderStation(stationTable) {
+  const stations = store.getStation();
+  if (stations) {
+    const template = stations
+      .map((item, index) => {
+        console.log(item, index);
+        return `<tr id=${index}>
+    <td>
+      ${item}    
     </td>
     <td>
     <button class="station-delete-button">
+      삭제
     </button>
     </td>
-  </tr>
-
+  </tr>`;
+      })
+      .join("");
+      console.log((stationTable.querySelector("tbody").innerHTML = template));
+      console.log(template);
+  }
+  
 }
 
 function initRenderStation() {
   let stationTable = $(".station-table-container");
-  const template = `<table border="1">
+  const template = `<table border="1" class="station-table">
                       <thead>
                       <tr>
                         <th>역이름</th>
