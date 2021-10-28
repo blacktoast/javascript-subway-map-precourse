@@ -1,8 +1,6 @@
 import { render } from "./render/initrender.js";
-import { renderStation } from "./render/station/station.js";
 import { initEvent } from "./controller/initColtroller.js";
 const MIN_STRING_LENGTH = 2;
-
 
 function subwayApp() {
   initEvent();
