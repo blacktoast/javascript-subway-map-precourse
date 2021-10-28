@@ -37,6 +37,34 @@ function getStationName() {
   return checkValidStationName(inputtedStationName);
 }
 
+//해당 페런츠에 원하는 이벤트를 위임하는 함수
+function delegate(parent, selector, eventHandler) {
+  parent.addEventListener("click", (e) => {
+    if (e.target.classList.contains(selector)) {
+      eventHandler(e);
+      return;
+    }
+  });
+}
+
+//클릭한 역을 삭제하는 함수
+function deleteStationHandler(e) {
+  if (confirm("해당 역을 삭제 하시겠습니까?")) {
+    let id = e.target.closest("tr").dataset.stationId;
+    let stations = store.getStation();
+    stations.splice(id, 1);
+    store.setStation(stations);
+    renderStation();
+  }
+}
+
+//삭제이벤트 초기화 함수
+function addDeleteEventToStation() {
+  let $stationTable = $(".station-table");
+  const $stationDeleteBtn = "station-delete-button";
+  delegate($stationTable, $stationDeleteBtn, deleteStationHandler);
+}
+
 function addStationEvent() {
   $("#station-add-button").addEventListener("click", (e) => {
     getStationName();
@@ -47,4 +75,5 @@ function addStationEvent() {
 export function initEvent() {
   addStationEvent();
   addLineEvent();
+  addDeleteEventToStation();
 }
