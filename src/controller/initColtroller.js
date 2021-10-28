@@ -59,7 +59,7 @@ function deleteStationHandler(e) {
 }
 
 //삭제이벤트 초기화 함수
-function addDeleteEventToStation() {
+function DeleteStationEvent() {
   let $stationTable = $(".station-table");
   const $stationDeleteBtn = "station-delete-button";
   delegate($stationTable, $stationDeleteBtn, deleteStationHandler);
@@ -75,5 +75,5 @@ function addStationEvent() {
 export function initEvent() {
   addStationEvent();
   addLineEvent();
-  addDeleteEventToStation();
+  DeleteStationEvent();
 }

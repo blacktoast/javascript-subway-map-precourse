@@ -5,7 +5,9 @@ export const store = {
   setStation(stations) {
     this.setItem("stations", stations);
   },
-
+  setLine(stations) {
+    this.setItem("lines", stations);
+  },
   getStation() {
     return JSON.parse(localStorage.getItem("stations"));
   },
