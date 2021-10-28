@@ -1,21 +1,12 @@
-const $ = (e) => document.querySelector(e);
+import { store } from "./store.js";
+import { render } from "./render/initrender.js";
+import { $ } from "./utils/dom.js";
 
 const MIN_STRING_LENGTH = 2;
 
-const store = {
-  setItem(key) {
-    console.log("set test");
-    localStorage.setItem("stations", JSON.stringify(key));
-  },
-  getStation() {
-    return JSON.parse(localStorage.getItem("stations"));
-  },
-};
-
 function addStation(stations, stationName) {
   stations.push(stationName);
-  console.log(stations);
-  store.setItem(stations);
+  store.setStation(stations);
 }
 
 function checkValidStationName(stationName) {
@@ -51,6 +42,7 @@ function getStationName() {
 function addStationEvent() {
   $("#station-add-button").addEventListener("click", (e) => {
     getStationName();
+    renderStation();
   });
 }
 
@@ -58,61 +50,9 @@ function initEvent() {
   addStationEvent();
 }
 
-function renderStation(stationTable) {
-  const stations = store.getStation();
-  if (stations) {
-    const template = stations
-      .map((item, index) => {
-        console.log(item, index);
-        return `<tr id=${index}>
-    <td>
-      ${item}    
-    </td>
-    <td>
-    <button class="station-delete-button">
-      삭제
-    </button>
-    </td>
-  </tr>`;
-      })
-      .join("");
-    console.log((stationTable.querySelector("tbody").innerHTML = template));
-    console.log(template);
-  }
-}
 
-function initRemoveEvent() {
-  let stationTable = $(".station-table");
-  stationTable.addEventListener("click", (e) => {
-    if (e.target.classList.contains("station-delete-button")) {
-      console.log(e.target.closest("tr"));
-    }
-  });
-}
 
-function initRenderStation() {
-  let stationTable = $(".station-table-container");
-  const template = `<table border="1" class="station-table">
-                      <thead>
-                      <tr>
-                        <th>역이름</th>
-                        <th>설정</th>
-                        </tr>
-                        </thead>
-                      <tbody>
-                      </tbody>           
-  </table> `;
 
-  stationTable.innerHTML = template;
-  console.log(stationTable);
-  renderStation(stationTable);
-  initRemoveEvent();
-  return;
-}
-
-function render() {
-  initRenderStation();
-}
 
 function subwayApp() {
   initEvent();
@@ -127,10 +67,14 @@ new subwayApp();
  *    [x] 중복된 역 이름 입력시 체크
  *    []
  * [] 로컬 스토리지에 저장된 데이터를 지하철 역 목록에 출력하기
- *  [] 로컬스토리지에서 데이터 값을 가져와서 stations 변수에 저장하기
- *  [] stations 값으로 table 안에서 tr태그로 랜더링하기
+ *  [x] 로컬스토리지에서 데이터 값을 가져와서 stations 변수에 저장하기
+ *  [x] stations 값으로 table 안에서 tr태그로 랜더링하기
  *  [] 삭제버튼도 같이 렌더링 하기
  * [] 삭제버튼을 누를시 로컬 스토리지에서 삭제하고 다시 렌더링하기
  *
  *
+ *
+ * ! 어려운점
+ *  dom접근을 어떻게 하면 좋을까..
+ *  const 변수를 할당해서 전역에서 접근할 수 있게 할까?
  */
