@@ -7,12 +7,14 @@ function initRemoveEvent() {
   let $stationTable = $(".station-table");
   $stationTable.addEventListener("click", (e) => {
     if (e.target.classList.contains("station-delete-button")) {
-      let id = e.target.closest("tr").dataset.stationId;
-      let stations = store.getStation();
-      console.log(id);
-      stations.splice(id, 1);
-      store.setStation(stations);
-      renderStation();
+      if (confirm("해당 역을 삭제 하시겠습니까?")) {
+        let id = e.target.closest("tr").dataset.stationId;
+        let stations = store.getStation();
+        console.log(id);
+        stations.splice(id, 1);
+        store.setStation(stations);
+        renderStation();
+      }
     }
   });
 }
