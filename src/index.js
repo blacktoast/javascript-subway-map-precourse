@@ -1,57 +1,7 @@
-import { store } from "./store.js";
 import { render } from "./render/initrender.js";
-import { $ } from "./utils/dom.js";
-
+import { renderStation } from "./render/station/station.js";
+import { initEvent } from "./controller/initColtroller.js";
 const MIN_STRING_LENGTH = 2;
-
-function addStation(stations, stationName) {
-  stations.push(stationName);
-  store.setStation(stations);
-}
-
-function checkValidStationName(stationName) {
-  let stations = [];
-  if (store.getStation()) {
-    stations.push(store.getStation());
-    stations = stations.flat();
-    if (stations.includes(stationName)) {
-      alert("중복된 역이름 입니다");
-      return;
-    }
-    console.log(stations);
-    return addStation(stations, stationName);
-  }
-  return addStation(stations, stationName);
-}
-
-function getStationName() {
-  let inputtedStationName = $("#station-name-input").value.trim();
-  console.log(inputtedStationName);
-  if (inputtedStationName.includes(" ")) {
-    alert("역이름에 공백이 들어갈수 없습니다");
-    return;
-  }
-  if (inputtedStationName === "") {
-    alert("역이름을 입력해주세요");
-    return;
-  }
-  $("#station-name-input").value = "";
-  return checkValidStationName(inputtedStationName);
-}
-
-function addStationEvent() {
-  $("#station-add-button").addEventListener("click", (e) => {
-    getStationName();
-    renderStation();
-  });
-}
-
-function initEvent() {
-  addStationEvent();
-}
-
-
-
 
 
 function subwayApp() {
@@ -73,7 +23,11 @@ new subwayApp();
  * [] 삭제버튼을 누를시 로컬 스토리지에서 삭제하고 다시 렌더링하기
  *
  *
- *
+ *2. 노선관리
+    [] 역정보를 가져와서 상행 하행 셀럭트 렌더하기
+    [] 노선추가 이벤트 작성
+ * 
+ * 
  * ! 어려운점
  *  dom접근을 어떻게 하면 좋을까..
  *  const 변수를 할당해서 전역에서 접근할 수 있게 할까?

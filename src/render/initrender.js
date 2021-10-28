@@ -1,26 +1,7 @@
 import { $ } from "../utils/dom.js";
 import { store } from "../store.js";
 import { initRenderLine } from "./line/line.js";
-
-function renderStation() {
-  let stationTable = $(".station-table-body");
-  const stations = store.getStation();
-  if (stations) {
-    const template = stations
-      .map((item, index) => {
-        console.log(item, index);
-        return `<tr data-station-id=${index}>
-                  <td>${item}</td>
-                  <td>
-                    <button class="station-delete-button">삭제</button>
-                  </td>
-                </tr>`;
-      })
-      .join("");
-    stationTable.innerHTML = template;
-    console.log(template);
-  }
-}
+import { renderStation } from "./station/station.js";
 
 function initRemoveEvent() {
   let $stationTable = $(".station-table");
