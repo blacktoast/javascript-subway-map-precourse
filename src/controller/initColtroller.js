@@ -2,6 +2,7 @@ import { addLineEvent } from "./line/lines.js";
 import { store } from "../store.js";
 import { $ } from "../utils/dom.js";
 import { renderStation } from "../render/station/station.js";
+import { checkEmpty, checkInputBlank } from "../utils/check.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
@@ -24,16 +25,17 @@ function checkValidStationName(stationName) {
 
 function getStationName() {
   let inputtedStationName = $("#station-name-input").value.trim();
-  console.log(inputtedStationName);
-  if (inputtedStationName.includes(" ")) {
-    alert("역이름에 공백이 들어갈수 없습니다");
-    return;
-  }
-  if (inputtedStationName === "") {
+  if (checkEmpty(inputtedStationName)) {
     alert("역이름을 입력해주세요");
+    $("#station-name-input").value = "";
     return;
   }
-  $("#station-name-input").value = "";
+  if (checkInputBlank(inputtedStationName)) {
+    alert("역이름에 공백이 들어갈수 없습니다");
+    $("#station-name-input").value = "";
+    return;
+  }
+
   return checkValidStationName(inputtedStationName);
 }
 

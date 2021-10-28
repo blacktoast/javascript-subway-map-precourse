@@ -11,4 +11,7 @@ export const store = {
   getStation() {
     return JSON.parse(localStorage.getItem("stations"));
   },
+  getLines() {
+    return JSON.parse(localStorage.getItem("lines"));
+  },
 };
