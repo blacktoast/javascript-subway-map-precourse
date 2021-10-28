@@ -1,12 +1,12 @@
 import { $ } from "../../utils/dom.js";
 import { store } from "../../store.js";
+
 export function renderStation() {
   let stationTable = $(".station-table-body");
   const stations = store.getStation();
   if (stations) {
     const template = stations
       .map((item, index) => {
-        console.log(item, index);
         return `<tr data-station-id=${index}>
                   <td>${item}</td>
                   <td>
@@ -16,6 +16,5 @@ export function renderStation() {
       })
       .join("");
     stationTable.innerHTML = template;
-    console.log(template);
   }
 }
