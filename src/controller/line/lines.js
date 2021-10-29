@@ -10,19 +10,20 @@ let lines = {};
  * [] 인풋값을 가져온디
  * [] 값을 정제힌다
  * [] 값을 넣은다;
-  [] 해당 배열이 null 일수있다..
+  [] 해당 배열이 null 일수있다.. 어떻게 체킹하지?
+  [] 배열값이 들어오면 
 */
 
 function getSelectedStation() {}
 
 function checkLineInput(lineNum, startStation, endStation) {
   let lines = store.getLines();
+  let lineStations = lines[lineNum.toString()];
   console.log(lines[lineNum.toString()] === null);
   if (checkEmpty(lineNum.toString())) {
     alert("노선 번호를 입력해주세요");
     return false;
   }
-  let lineStations = lines[lineNum.toString()];
   if (lineStations) {
     console.log(lineStations.includes(startStation));
     if (
@@ -38,12 +39,12 @@ function checkLineInput(lineNum, startStation, endStation) {
 }
 
 function inputLine(lineNum, startStation, endStation) {
-  if (lines[lineNum]) {
-    lines[lineNum].push(startStation, endStation);
-    store.setLine(lines);
-  } else {
-    console.log("2");
+  if (!lines[lineNum]) {
     lines[lineNum] = [];
+    store.setLine(lines);
+    console.log("object");
+  }
+  if (checkLineInput(lineNum, startStation, endStation)) {
     lines[lineNum].push(startStation, endStation);
     lineNum = "";
     store.setLine(lines);
@@ -57,10 +58,6 @@ export function addLineEvent() {
       return;
     }
     let lineNum = getLineInput();
-    if (
-      checkLineInput(lineNum, $startLineSelector.value, $endLineSelector.value)
-    ) {
-      inputLine(lineNum, $startLineSelector.value, $endLineSelector.value);
-    }
+    inputLine(lineNum, $startLineSelector.value, $endLineSelector.value);
   });
 }
