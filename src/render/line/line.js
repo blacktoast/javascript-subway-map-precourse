@@ -9,7 +9,7 @@ import { store } from "../../store.js";
 
 let $startLineSelector = $("#line-start-station-selector");
 let $endLineSelector = $("#line-end-station-selector");
-
+let $lineListContainer = $(".station-line-list-container");
 function returnLineHtml(station) {
   return `<option value="${station}">${station}</option>`;
 }
@@ -26,7 +26,27 @@ function renderLineSelector() {
   $endLineSelector.innerHTML = template;
 }
 
-function renderLineList() {}
+function RenderLineList(){
+  
+}
+
+function initRenderLineList() {
+  let template = `<table border="1" class="line-table">
+                  <thead>
+                    <tr>
+                      <th>노선이름</th>
+                      <th>상행역</th>
+                      <th>하행역</th>
+                      <th>설정</th>
+                    </tr>
+                  </thead>
+                  <tbody class="line-table-body">
+                  </tbody>           
+                  </table> `;
+  $lineListContainer.innerHTML = template;
+  console.log($lineListContainer);
+}
 export function initRenderLine() {
   renderLineSelector();
+  initRenderLineList();
 }

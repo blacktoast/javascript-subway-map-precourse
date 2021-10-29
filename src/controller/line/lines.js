@@ -4,7 +4,7 @@ import { $, getLineInput } from "../../utils/dom.js";
 
 let $startLineSelector = $("#line-start-station-selector");
 let $endLineSelector = $("#line-end-station-selector");
-let lines = {};
+let lines = store.getLines();
 
 /**
  * [] 인풋값을 가져온디
