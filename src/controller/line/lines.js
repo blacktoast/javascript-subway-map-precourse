@@ -1,4 +1,4 @@
-import { initRenderLine } from "../../render/line/renderLine.js";
+import { renderLineList } from "../../render/line/renderLine.js";
 import { store } from "../../store.js";
 import { checkEmpty } from "../../utils/check.js";
 import { $, delegate, getLineInput } from "../../utils/dom.js";
@@ -58,7 +58,7 @@ function deleteLineHandler(e) {
     let lines = store.getLines();
     delete lines[key];
     store.setLine(lines);
-    initRenderLine();
+    renderLineList();
   }
 }
 
@@ -76,6 +76,6 @@ export function addLineEvent() {
     }
     let lineNum = getLineInput();
     inputLine(lineNum, $startLineSelector.value, $endLineSelector.value);
-    initRenderLine();
+    renderLineList();
   });
 }

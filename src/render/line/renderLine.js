@@ -40,7 +40,7 @@ function lineListTemplate(lineNumbers, startStations, endStations) {
     .join("");
 }
 
-function RenderLineList() {
+export function renderLineList() {
   let lines = store.getLines();
   let stations = [];
   let startStations = [];
@@ -76,5 +76,5 @@ function initRenderLineList() {
 export function initRenderLine() {
   renderLineSelector();
   initRenderLineList();
-  RenderLineList();
+  renderLineList();
 }
