@@ -8,6 +8,7 @@ export function emptyInputValue(inputDom) {
 
 export function delegate(parent, selector, eventHandler) {
   parent.addEventListener("click", (e) => {
+    console.log(e.target);
     if (e.target.classList.contains(selector)) {
       eventHandler(e);
       return;

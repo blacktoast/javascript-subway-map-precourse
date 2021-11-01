@@ -15,14 +15,14 @@
         <h1>🚇 지하철 노선도 관리</h1>
       </div>
       <nav class="station-menu">
-        <button data-menu-id="station" id="station-manager-button ">1. 역관리</button>
-        <button data-menu-id="line"    id="line-manager-button">2. 노선관리</button>
-        <button data-menu-id="section" id="section-manager-button">3. 구간관리</button>
-        <button data-menu-id="map"     id="map-print-manager-button">4. 지하철노선도 관리</button>
+        <button data-menu-id="station" id="station-manager-button" class="menu">1. 역관리</button>
+        <button data-menu-id="line"    id="line-manager-button" class="menu">2. 노선관리</button>
+        <button data-menu-id="section" id="section-manager-button" class="menu">3. 구간관리</button>
+        <button data-menu-id="map"     id="map-print-manager-button" class="menu">4. 지하철노선도 관리</button>
       </nav>
     </header>
     <div class="manager-container mg-5">
-      <div class="station-manager-page" >
+      <div class="station-manager-page" hidden>
         <div >
           역 이름
           <div class="station-input-container " >
@@ -35,7 +35,7 @@
         </div>
         <h3>🚉 지하철 역 목록</h3>
         <div class="station-table-container"></div>
-        
+      </div>
         <div class="line-manager-page">
           노선입력
           <div class="station-name-input-container">
@@ -62,7 +62,7 @@
           <div class="section-input-container"></div>
         </div>
         <div class="map-print-page"></div>
-      </div>
+      
  
     <script type="module" src="src/index.js"></script>
   </body>

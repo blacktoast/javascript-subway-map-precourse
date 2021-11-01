@@ -75,7 +75,23 @@ function initStationEvent() {
   DeleteStationEvent();
 }
 
+function menuSelectHandler(e) {
+  let id = e.target.dataset.menuId;
+  switch (id) {
+    case "station":
+      console.log("test");
+      break;
+  }
+}
+
+function initMenu() {
+  let menu = $(".station-menu");
+  const btn = "menu";
+  delegate(menu, btn, menuSelectHandler);
+}
+
 export function initEvent() {
+  initMenu();
   initStationEvent();
   addLineEvent();
   deleteLineEvent();
