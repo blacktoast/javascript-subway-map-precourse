@@ -6,8 +6,12 @@ import { checkEmpty, checkInputBlank } from "../utils/check.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
+  emptyStation();
 }
 
+function emptyStation() {
+  $("#station-name-input").value = "";
+}
 function checkValidStationName(stationName) {
   let stations = [];
   if (store.getStation()) {
@@ -15,6 +19,7 @@ function checkValidStationName(stationName) {
     stations = stations.flat();
     if (stations.includes(stationName)) {
       alert("중복된 역이름 입니다");
+      emptyStation();
       return;
     }
     console.log(stations);
@@ -27,12 +32,12 @@ function getStationName() {
   let inputtedStationName = $("#station-name-input").value.trim();
   if (checkEmpty(inputtedStationName)) {
     alert("역이름을 입력해주세요");
-    $("#station-name-input").value = "";
+    emptyStation();
     return;
   }
   if (checkInputBlank(inputtedStationName)) {
     alert("역이름에 공백이 들어갈수 없습니다");
-    $("#station-name-input").value = "";
+    emptyStation();
     return;
   }
 
@@ -53,7 +58,7 @@ function deleteStationHandler(e) {
 }
 
 //삭제이벤트 초기화 함수
-function DeleteStationEvent() {
+export function DeleteStationEvent() {
   let $stationTable = $(".station-table");
   const $stationDeleteBtn = "station-delete-button";
   delegate($stationTable, $stationDeleteBtn, deleteStationHandler);

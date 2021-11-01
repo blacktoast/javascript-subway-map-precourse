@@ -1,5 +1,6 @@
 import { $ } from "../../utils/dom.js";
 import { store } from "../../store.js";
+import { DeleteStationEvent } from "../../controller/initColtroller.js";
 
 export function initRenderStation() {
   let stationTable = $(".station-table-container");
@@ -15,6 +16,7 @@ export function initRenderStation() {
                       </table> `;
   stationTable.innerHTML = template;
   renderStation();
+  DeleteStationEvent();
   return;
 }
 
