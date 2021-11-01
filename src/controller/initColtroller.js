@@ -75,11 +75,25 @@ function initStationEvent() {
   DeleteStationEvent();
 }
 
+function selectMenu(id) {
+  let menus = ["station", "line", "section", "map"];
+  console.log(id & 2);
+  document.querySelector(".station-manager-page").hidden = id & 1;
+  document.querySelector(".line-manager-page").hidden = id & 2;
+  document.querySelector(".section-manager-page").hidden = id & 4;
+  document.querySelector(".map-print-page").hidden = id & 8;
+}
+
 function menuSelectHandler(e) {
   let id = e.target.dataset.menuId;
   switch (id) {
     case "station":
       console.log("test");
+      selectMenu(1);
+      break;
+    case "line":
+      console.log("test2");
+      selectMenu(2);
       break;
   }
 }

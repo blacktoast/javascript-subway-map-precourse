@@ -22,7 +22,7 @@
       </nav>
     </header>
     <div class="manager-container mg-5">
-      <div class="station-manager-page">
+      <div class="station-manager-page" hidden>
         <div >
           역 이름
           <div class="station-input-container " >
@@ -36,7 +36,7 @@
         <h3>🚉 지하철 역 목록</h3>
         <div class="station-table-container"></div>
       </div>
-        <div class="line-manager-page">
+        <div class="line-manager-page" hidden>
           노선입력
           <div class="station-name-input-container">
             <input type="text" id="line-name-input" placeholder="노선을 입력해주세요">
@@ -56,12 +56,12 @@
           <h3>🚉 지하철 노선 목록</h3>
           <div class="station-line-list-container"></div>
         </div>
-        <div class="section-manager-page">
+        <div class="section-manager-page" hidden>
           <h3>구간을 수정할 노선을 선택해주세요.</h3>
           <div class="line-select-container"></div>
           <div class="section-input-container"></div>
         </div>
-        <div class="map-print-page"></div>
+        <div class="map-print-page" hidden>노선도출력</div>
       
  
     <script type="module" src="src/index.js"></script>
