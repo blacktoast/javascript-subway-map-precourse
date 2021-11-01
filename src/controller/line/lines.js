@@ -1,7 +1,7 @@
 import { initRenderLine } from "../../render/line/renderLine.js";
 import { store } from "../../store.js";
 import { checkEmpty } from "../../utils/check.js";
-import { $, getLineInput } from "../../utils/dom.js";
+import { $, delegate, getLineInput } from "../../utils/dom.js";
 
 let $startLineSelector = $("#line-start-station-selector");
 let $endLineSelector = $("#line-end-station-selector");
@@ -50,6 +50,22 @@ function inputLine(lineNum, startStation, endStation) {
     lineNum = "";
     store.setLine(lines);
   }
+}
+
+function deleteLineHandler(e) {
+  if (confirm("해당 노선을 삭제 하겠습니까?")) {
+    let key = e.target.closest("tr").dataset.lineId;
+    let lines = store.getLines();
+    delete lines[key];
+    store.setLine(lines);
+    initRenderLine();
+  }
+}
+
+export function deleteLineEvent() {
+  let $lineTable = $(".line-table");
+  const $deleteLineBtn = "line-delete-button";
+  delegate($lineTable, $deleteLineBtn, deleteLineHandler);
 }
 
 export function addLineEvent() {

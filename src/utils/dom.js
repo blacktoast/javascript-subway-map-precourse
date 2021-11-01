@@ -5,3 +5,12 @@ export function getLineInput() {
 export function emptyInputValue(inputDom) {
   inputDom = "";
 }
+
+export function delegate(parent, selector, eventHandler) {
+  parent.addEventListener("click", (e) => {
+    if (e.target.classList.contains(selector)) {
+      eventHandler(e);
+      return;
+    }
+  });
+}

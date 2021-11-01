@@ -28,8 +28,8 @@ function renderLineSelector() {
 function lineListTemplate(lineNumbers, startStations, endStations) {
   return lineNumbers
     .map((line, index) => {
-      return `<tr>
-        <td>${line} 호선</td>
+      return `<tr data-line-id=${line}>
+        <td >${line} 호선</td>
         <td>${startStations[index]}</td>
         <td>${endStations[index]}</td>
         <td>

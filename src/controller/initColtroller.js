@@ -1,6 +1,6 @@
-import { addLineEvent } from "./line/lines.js";
+import { addLineEvent, deleteLineEvent } from "./line/lines.js";
 import { store } from "../store.js";
-import { $ } from "../utils/dom.js";
+import { $, delegate } from "../utils/dom.js";
 import { initRenderStation } from "../render/station/station.js";
 import { checkEmpty, checkInputBlank } from "../utils/check.js";
 function addStation(stations, stationName) {
@@ -40,14 +40,6 @@ function getStationName() {
 }
 
 //해당 페런츠에 원하는 이벤트를 위임하는 함수
-function delegate(parent, selector, eventHandler) {
-  parent.addEventListener("click", (e) => {
-    if (e.target.classList.contains(selector)) {
-      eventHandler(e);
-      return;
-    }
-  });
-}
 
 //클릭한 역을 삭제하는 함수
 function deleteStationHandler(e) {
@@ -73,9 +65,13 @@ function addStationEvent() {
     initRenderStation();
   });
 }
+function initStationEvent() {
+  addStationEvent();
+  DeleteStationEvent();
+}
 
 export function initEvent() {
-  addStationEvent();
+  initStationEvent();
   addLineEvent();
-  DeleteStationEvent();
+  deleteLineEvent();
 }
