@@ -1,8 +1,9 @@
 import { addLineEvent, deleteLineEvent } from "./line/addline.js";
 import { store } from "../store.js";
 import { $, delegate } from "../utils/dom.js";
-import { renderStation } from "../render/station/station.js";
+import { initRenderStation, renderStation } from "../render/station/station.js";
 import { checkEmpty, checkInputBlank } from "../utils/check.js";
+import { initRenderLine } from "../render/line/renderLine.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
@@ -78,22 +79,28 @@ function initStationEvent() {
 function selectMenu(id) {
   let menus = ["station", "line", "section", "map"];
   console.log(id & 2);
-  document.querySelector(".station-manager-page").hidden = id & 1;
-  document.querySelector(".line-manager-page").hidden = id & 2;
-  document.querySelector(".section-manager-page").hidden = id & 4;
-  document.querySelector(".map-print-page").hidden = id & 8;
+  document.querySelector(".station-manager-page").hidden = !(id & 1);
+  document.querySelector(".line-manager-page").hidden = !(id & 2);
+  document.querySelector(".section-manager-page").hidden = !(id & 4);
+  document.querySelector(".map-print-page").hidden = !(id & 8);
 }
 
 function menuSelectHandler(e) {
   let id = e.target.dataset.menuId;
   switch (id) {
     case "station":
-      console.log("test");
+      initRenderStation();
       selectMenu(1);
       break;
     case "line":
-      console.log("test2");
+      initRenderLine();
       selectMenu(2);
+      break;
+    case "section":
+      selectMenu(4);
+      break;
+    case "map":
+      selectMenu(8);
       break;
   }
 }
