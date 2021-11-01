@@ -26,9 +26,7 @@ function renderLineSelector() {
   $endLineSelector.innerHTML = template;
 }
 
-function RenderLineList(){
-  
-}
+function RenderLineList() {}
 
 function initRenderLineList() {
   let template = `<table border="1" class="line-table">
@@ -44,7 +42,6 @@ function initRenderLineList() {
                   </tbody>           
                   </table> `;
   $lineListContainer.innerHTML = template;
-  console.log($lineListContainer);
 }
 export function initRenderLine() {
   renderLineSelector();

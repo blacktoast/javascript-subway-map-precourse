@@ -1,6 +1,6 @@
 import { $ } from "../utils/dom.js";
 import { store } from "../store.js";
-import { initRenderLine } from "./line/line.js";
+import { initRenderLine } from "./line/renderLine.js";
 import { renderStation } from "./station/station.js";
 
 function initRenderStation() {
@@ -16,7 +16,6 @@ function initRenderStation() {
                       </tbody>           
                       </table> `;
   stationTable.innerHTML = template;
-  console.log(stationTable);
   renderStation();
   return;
 }
