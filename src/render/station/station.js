@@ -1,7 +1,24 @@
 import { $ } from "../../utils/dom.js";
 import { store } from "../../store.js";
 
-export function renderStation() {
+export function initRenderStation() {
+  let stationTable = $(".station-table-container");
+  const template = `<table border="1" class="station-table">
+                      <thead>
+                      <tr>
+                        <th>역이름</th>
+                        <th>설정</th>
+                        </tr>
+                        </thead>
+                      <tbody class="station-table-body">
+                      </tbody>           
+                      </table> `;
+  stationTable.innerHTML = template;
+  renderStation();
+  return;
+}
+
+function renderStation() {
   let stationTable = $(".station-table-body");
   const stations = store.getStation();
   if (stations) {

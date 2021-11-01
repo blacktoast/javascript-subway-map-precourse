@@ -1,10 +1,12 @@
+import { initRenderLine } from "../../render/line/renderLine.js";
 import { store } from "../../store.js";
 import { checkEmpty } from "../../utils/check.js";
 import { $, getLineInput } from "../../utils/dom.js";
 
 let $startLineSelector = $("#line-start-station-selector");
 let $endLineSelector = $("#line-end-station-selector");
-let lines = store.getLines();
+
+let lines = store.getLines() ? store.getLines() : {};
 
 /**
  * [] 인풋값을 가져온디
@@ -42,7 +44,6 @@ function inputLine(lineNum, startStation, endStation) {
   if (!lines[lineNum]) {
     lines[lineNum] = [];
     store.setLine(lines);
-    console.log("object");
   }
   if (checkLineInput(lineNum, startStation, endStation)) {
     lines[lineNum].push(startStation, endStation);
@@ -59,5 +60,6 @@ export function addLineEvent() {
     }
     let lineNum = getLineInput();
     inputLine(lineNum, $startLineSelector.value, $endLineSelector.value);
+    initRenderLine();
   });
 }

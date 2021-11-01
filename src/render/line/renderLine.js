@@ -16,7 +16,6 @@ function returnLineHtml(station) {
 
 function renderLineSelector() {
   let stations = store.getStation();
-  console.log(stations);
   let template = stations
     .map((e) => {
       return returnLineHtml(e);
@@ -26,7 +25,38 @@ function renderLineSelector() {
   $endLineSelector.innerHTML = template;
 }
 
-function RenderLineList() {}
+function lineListTemplate(lineNumbers, startStations, endStations) {
+  return lineNumbers
+    .map((line, index) => {
+      return `<tr>
+        <td>${line} 호선</td>
+        <td>${startStations[index]}</td>
+        <td>${endStations[index]}</td>
+        <td>
+          <button class="line-delete-button">삭제</button>
+        </td>
+      </tr>`;
+    })
+    .join("");
+}
+
+function RenderLineList() {
+  let lines = store.getLines();
+  let stations = [];
+  let startStations = [];
+  let endStations = [];
+  let lineNumbers = [];
+  let $lineList = $(".line-table-body");
+  for (let key in lines) {
+    stations = lines[key];
+    lineNumbers.push(key);
+    startStations.push(stations[0]);
+    endStations.push(stations[stations.length - 1]);
+    console.log(lineNumbers);
+  }
+  let template = lineListTemplate(lineNumbers, startStations, endStations);
+  $lineList.innerHTML = template;
+}
 
 function initRenderLineList() {
   let template = `<table border="1" class="line-table">
@@ -46,4 +76,5 @@ function initRenderLineList() {
 export function initRenderLine() {
   renderLineSelector();
   initRenderLineList();
+  RenderLineList();
 }

@@ -1,7 +1,7 @@
 import { addLineEvent } from "./line/lines.js";
 import { store } from "../store.js";
 import { $ } from "../utils/dom.js";
-import { renderStation } from "../render/station/station.js";
+import { initRenderStation } from "../render/station/station.js";
 import { checkEmpty, checkInputBlank } from "../utils/check.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
@@ -56,7 +56,7 @@ function deleteStationHandler(e) {
     let stations = store.getStation();
     stations.splice(id, 1);
     store.setStation(stations);
-    renderStation();
+    initRenderStation();
   }
 }
 
@@ -70,7 +70,7 @@ function DeleteStationEvent() {
 function addStationEvent() {
   $("#station-add-button").addEventListener("click", (e) => {
     getStationName();
-    renderStation();
+    initRenderStation();
   });
 }
 
