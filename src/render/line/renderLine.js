@@ -15,14 +15,16 @@ function returnLineHtml(station) {
 }
 
 function renderLineSelector() {
-  let stations = store.getStation();
-  let template = stations
-    .map((e) => {
-      return returnLineHtml(e);
-    })
-    .join("");
-  $startLineSelector.innerHTML = template;
-  $endLineSelector.innerHTML = template;
+  if (store.getStation()) {
+    let stations = store.getStation();
+    let template = stations
+      .map((e) => {
+        return returnLineHtml(e);
+      })
+      .join("");
+    $startLineSelector.innerHTML = template;
+    $endLineSelector.innerHTML = template;
+  }
 }
 
 function lineListTemplate(lineNumbers, startStations, endStations) {
