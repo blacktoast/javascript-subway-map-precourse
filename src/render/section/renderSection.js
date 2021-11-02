@@ -28,7 +28,7 @@ function sectionInputTemplate(lineNum) {
               id="section-order-input"
               placeholder="구간."
             />
-            <button id="section-add-button">등록</button>
+            <button id="section-add-button">등록(숫자만)</button>
           </div>
           <table border="1" class="section-table">
                   <thead>
