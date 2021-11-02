@@ -5,6 +5,7 @@ import { initRenderStation, renderStation } from "../render/station/station.js";
 import { checkEmpty, checkInputBlank } from "../utils/check.js";
 import { initRenderLine } from "../render/line/renderLine.js";
 import { initSectionEvent } from "./section/section.js";
+import { initRenderSection } from "../render/section/renderSection.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
@@ -78,7 +79,6 @@ function initStationEvent() {
 }
 
 function selectMenu(id) {
-  let menus = ["station", "line", "section", "map"];
   document.querySelector(".station-manager-page").hidden = !(id & 1);
   document.querySelector(".line-manager-page").hidden = !(id & 2);
   document.querySelector(".section-manager-page").hidden = !(id & 4);
@@ -99,6 +99,7 @@ function menuSelectHandler(e) {
       selectMenu(2);
       break;
     case "section":
+      initRenderSection();
       selectMenu(4);
       break;
     case "map":

@@ -17,6 +17,12 @@ function lineBtnTemplate(lines) {
     .join("");
 }
 
+function renderSectionStations(lineNum) {
+  let lines = store.getLines();
+  let lineStations = lines[lineNum];
+  console.log(lineStations);
+}
+
 function renderLineSelect() {
   let lines = store.getLines();
   let lineNumbers = [];
@@ -38,14 +44,27 @@ function sectionInputTemplate(lineNum) {
           <select id="section-station-selector">${stations}</select>
             <input
               id="section-order-input"
-              placeholder="역 이름을 입력해주세요."
+              placeholder="구간."
             />
-            <button id="section-add-button">역 추가</button>
-          </div>`;
+            <button id="section-add-button">등록</button>
+          </div>
+          <table border="1" class="section-table">
+                  <thead>
+                    <tr>
+                      <th>순서</th>
+                      <th>이름</th>
+                      <th>설정</th>
+                    </tr>
+                  </thead>
+                  <tbody class="section-table-body">
+                  </tbody>           
+                  </table>
+          `;
 }
 export function renderSectionInput(lineNum) {
   let $sectionContainer = $(".section-input-container");
-  $sectionContainer.innerHTML = sectionInputTemplate();
+  $sectionContainer.innerHTML = sectionInputTemplate(lineNum);
+  renderSectionStations(lineNum);
 }
 function renderSection() {}
 export function initRenderSection() {

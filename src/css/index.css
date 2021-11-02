@@ -4,6 +4,10 @@
 body {
   margin-left: 50%;
 }
+
+table {
+  margin-top: 10px;
+}
 .section-line-menu-button {
   margin-right: 5px;
 }
