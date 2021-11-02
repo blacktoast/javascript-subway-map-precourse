@@ -54,7 +54,6 @@ export function renderLineList() {
     lineNumbers.push(key);
     startStations.push(stations[0]);
     endStations.push(stations[stations.length - 1]);
-    console.log(lineNumbers);
   }
   let template = lineListTemplate(lineNumbers, startStations, endStations);
   $lineList.innerHTML = template;
