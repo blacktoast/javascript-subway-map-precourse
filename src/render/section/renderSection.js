@@ -17,24 +17,6 @@ function lineBtnTemplate(lines) {
     .join("");
 }
 
-function renderSectionStations(lineNum) {
-  let lines = store.getLines();
-  let lineStations = lines[lineNum];
-  console.log(lineStations);
-}
-
-function renderLineSelect() {
-  let lines = store.getLines();
-  let lineNumbers = [];
-  let selectContainer = $(".line-select-container");
-  for (let key in lines) {
-    lineNumbers.push(key);
-  }
-  let template = lineBtnTemplate(lineNumbers);
-  console.log(template);
-  selectContainer.innerHTML = template;
-}
-
 function sectionInputTemplate(lineNum) {
   let stations = getStationsTemplate();
   console.log(lineNum);
@@ -61,6 +43,25 @@ function sectionInputTemplate(lineNum) {
                   </table>
           `;
 }
+
+function renderSectionStations(lineNum) {
+  let lines = store.getLines();
+  let lineStations = lines[lineNum];
+  console.log(lineStations);
+}
+
+function renderLineSelect() {
+  let lines = store.getLines();
+  let lineNumbers = [];
+  let selectContainer = $(".line-select-container");
+  for (let key in lines) {
+    lineNumbers.push(key);
+  }
+  let template = lineBtnTemplate(lineNumbers);
+  console.log(template);
+  selectContainer.innerHTML = template;
+}
+
 export function renderSectionInput(lineNum) {
   let $sectionContainer = $(".section-input-container");
   $sectionContainer.innerHTML = sectionInputTemplate(lineNum);
