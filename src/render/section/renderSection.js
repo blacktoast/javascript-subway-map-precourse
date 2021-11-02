@@ -8,11 +8,11 @@
  */
 
 import { store } from "../../store.js";
-import { $ } from "../../utils/dom.js";
+import { $, getStationsTemplate } from "../../utils/dom.js";
 function lineBtnTemplate(lines) {
   return lines
     .map((line) => {
-      return `<button class="section-line-menu-button">${line}호선</button>`;
+      return `<button class="section-line-menu-button" data-line-id=${line}>${line}호선</button>`;
     })
     .join("");
 }
@@ -29,7 +29,25 @@ function renderLineSelect() {
   selectContainer.innerHTML = template;
 }
 
-function renderSectionInput() {}
+function sectionInputTemplate(lineNum) {
+  let stations = getStationsTemplate();
+  console.log(lineNum);
+  return `<h2>${lineNum} 호선</h2>
+            <h4>구간 등록</h4>
+          <div class="section-input" >
+          <select id="section-station-selector">${stations}</select>
+            <input
+              id="section-order-input"
+              placeholder="역 이름을 입력해주세요."
+            />
+            <button id="section-add-button">역 추가</button>
+          </div>`;
+}
+export function renderSectionInput(lineNum) {
+  let $sectionContainer = $(".section-input-container");
+  $sectionContainer.innerHTML = sectionInputTemplate();
+}
+function renderSection() {}
 export function initRenderSection() {
   renderLineSelect();
 }

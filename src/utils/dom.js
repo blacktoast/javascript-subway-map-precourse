@@ -1,3 +1,5 @@
+import { store } from "../store.js";
+
 export const $ = (e) => document.querySelector(e);
 export function getLineInput() {
   return $("#line-name-input").value.trim();
@@ -14,4 +16,17 @@ export function delegate(parent, selector, eventHandler) {
       return;
     }
   });
+}
+
+export function getStationsTemplate() {
+  let template;
+  if (store.getStation()) {
+    let stations = store.getStation();
+    template = stations
+      .map((e) => {
+        return `<option value="${e}">${e}</option>`;
+      })
+      .join("");
+  }
+  return template;
 }

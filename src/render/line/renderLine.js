@@ -4,7 +4,7 @@
  * [] 시작할때 노선도 출력
  */
 
-import { $ } from "../../utils/dom.js";
+import { $, getStationsTemplate } from "../../utils/dom.js";
 import { store } from "../../store.js";
 
 let $startLineSelector = $("#line-start-station-selector");
@@ -17,11 +17,7 @@ function returnLineHtml(station) {
 function renderLineSelector() {
   if (store.getStation()) {
     let stations = store.getStation();
-    let template = stations
-      .map((e) => {
-        return returnLineHtml(e);
-      })
-      .join("");
+    let template = getStationsTemplate();
     $startLineSelector.innerHTML = template;
     $endLineSelector.innerHTML = template;
   }

@@ -4,6 +4,7 @@ import { $, delegate } from "../utils/dom.js";
 import { initRenderStation, renderStation } from "../render/station/station.js";
 import { checkEmpty, checkInputBlank } from "../utils/check.js";
 import { initRenderLine } from "../render/line/renderLine.js";
+import { initSectionEvent } from "./section/section.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
@@ -117,4 +118,5 @@ export function initEvent() {
   initStationEvent();
   addLineEvent();
   deleteLineEvent();
+  initSectionEvent();
 }
