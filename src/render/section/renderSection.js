@@ -20,7 +20,7 @@ function lineBtnTemplate(lines) {
 
 function sectionInputTemplate(lineNum) {
   let stations = getStationsTemplate();
-  return `<h2>${lineNum} 호선</h2>
+  return `<h2 data-section-id=${lineNum} class="section-line">${lineNum} 호선</h2>
             <h4>구간 등록</h4>
           <div class="section-input" >
           <select id="section-station-selector">${stations}</select>
@@ -47,7 +47,7 @@ function sectionInputTemplate(lineNum) {
 function sectionStationsTemplate(stations) {
   return stations
     .map((station, index) => {
-      return `<tr section-order-id=${index}>
+      return `<tr data-section-order-id=${index}>
               <td>${index}</td>
               <td>${station}</td>
               <td>

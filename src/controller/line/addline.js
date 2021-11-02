@@ -14,8 +14,6 @@ let $endLineSelector = $("#line-end-station-selector");
   [] 배열값이 들어오면 
 */
 
-function getSelectedStation() {}
-
 function checkLineInput(lineNum, startStation, endStation) {
   let lines = store.getLines();
   console.log(lines);
