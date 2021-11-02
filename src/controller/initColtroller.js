@@ -90,11 +90,12 @@ function menuSelectHandler(e) {
   switch (id) {
     case "station":
       initRenderStation();
-      initEvent();
+      DeleteStationEvent();
       selectMenu(1);
       break;
     case "line":
       initRenderLine();
+      deleteLineEvent();
       selectMenu(2);
       break;
     case "section":

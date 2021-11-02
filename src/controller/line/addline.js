@@ -6,8 +6,6 @@ import { $, delegate, getLineInput } from "../../utils/dom.js";
 let $startLineSelector = $("#line-start-station-selector");
 let $endLineSelector = $("#line-end-station-selector");
 
-let lines = store.getLines() ? store.getLines() : {};
-
 /**
  * [] 인풋값을 가져온디
  * [] 값을 정제힌다
@@ -20,10 +18,10 @@ function getSelectedStation() {}
 
 function checkLineInput(lineNum, startStation, endStation) {
   let lines = store.getLines();
+  console.log(lines);
   let lineStations = lines[lineNum.toString()];
   console.log(lines[lineNum.toString()] === null);
   if (lineStations) {
-    console.log(lineStations.includes(startStation));
     if (
       lineStations.includes(startStation) ||
       lineStations.includes(endStation)
@@ -37,6 +35,8 @@ function checkLineInput(lineNum, startStation, endStation) {
 }
 
 function inputLine(lineNum, startStation, endStation) {
+  let lines = store.getLines() ? store.getLines() : {};
+
   if (checkEmpty(lineNum.toString())) {
     alert("노선 번호를 입력해주세요");
     return;
