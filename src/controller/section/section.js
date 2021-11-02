@@ -2,12 +2,16 @@ import { renderSectionInput } from "../../render/section/renderSection.js";
 import { store } from "../../store.js";
 import { $, delegate } from "../../utils/dom.js";
 
+function reRender(num) {
+  renderSectionInput(num);
+  sectionDeleteEvent();
+  sectionAddEvent();
+}
+
 function selectHandler(e) {
   if (e.target.classList.contains("section-line-menu-button")) {
     const line = e.target.dataset.lineId;
-    renderSectionInput(line);
-    sectionDeleteEvent();
-    sectionAddEvent();
+    reRender(line);
   }
 }
 
@@ -28,7 +32,13 @@ function checkSectionData() {
 function sectionDeleteHandler(e) {
   if (confirm("해당 노선을 삭제하시겠습니까?")) {
     if (checkSectionData()) {
-      console.log(e.target.closest("tr").dataset.sectionOrderId);
+      let order = e.target.closest("tr").dataset.sectionOrderId;
+      let line = store.getLines();
+      let lineNum = getSectionLine();
+      let lineStations = line[lineNum];
+      line[lineNum].splice(order, 1);
+      store.setLine(line);
+      reRender(lineNum);
     }
   }
 }
@@ -38,12 +48,13 @@ function sectionAddHandler(e) {
   let order = $("#section-order-input").value.trim();
   let line = store.getLines();
   let lineStations = line[getSectionLine()];
+  if (lineStations.includes(station)) {
+    alert("해당 노선에 중복된 구간입니다");
+    return;
+  }
   lineStations.splice(order, 0, station);
   store.setLine(line);
-  renderSectionInput(getSectionLine());
-  sectionDeleteEvent();
-  sectionAddEvent();
-  console.log(lineStations, order, line);
+  reRender(getSectionLine());
 }
 
 function sectionAddEvent() {
