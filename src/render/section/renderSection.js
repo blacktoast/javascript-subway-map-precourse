@@ -9,6 +9,7 @@
 
 import { store } from "../../store.js";
 import { $, getStationsTemplate } from "../../utils/dom.js";
+
 function lineBtnTemplate(lines) {
   return lines
     .map((line) => {
@@ -44,10 +45,13 @@ function sectionInputTemplate(lineNum) {
           `;
 }
 
+function sectionStationsTemplate(stations) {
+  return stations.map((station) => {});
+}
+
 function renderSectionStations(lineNum) {
   let lines = store.getLines();
   let lineStations = lines[lineNum];
-  console.log(lineStations);
 }
 
 function renderLineSelect() {
