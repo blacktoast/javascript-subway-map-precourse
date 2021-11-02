@@ -20,7 +20,6 @@ function lineBtnTemplate(lines) {
 
 function sectionInputTemplate(lineNum) {
   let stations = getStationsTemplate();
-  console.log(lineNum);
   return `<h2>${lineNum} 호선</h2>
             <h4>구간 등록</h4>
           <div class="section-input" >
@@ -46,12 +45,25 @@ function sectionInputTemplate(lineNum) {
 }
 
 function sectionStationsTemplate(stations) {
-  return stations.map((station) => {});
+  return stations
+    .map((station, index) => {
+      return `<tr section-order-id=${index}>
+              <td>${index}</td>
+              <td>${station}</td>
+              <td>
+              <button class="station-delete-button">삭제</button>
+              </td>
+              </tr>`;
+    })
+    .join("");
 }
 
 function renderSectionStations(lineNum) {
+  let $sectionTable = $(".section-table-body");
   let lines = store.getLines();
   let lineStations = lines[lineNum];
+  let template = sectionStationsTemplate(lineStations);
+  $sectionTable.innerHTML = template;
 }
 
 function renderLineSelect() {
