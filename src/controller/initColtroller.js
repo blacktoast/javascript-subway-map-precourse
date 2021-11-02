@@ -78,7 +78,6 @@ function initStationEvent() {
 
 function selectMenu(id) {
   let menus = ["station", "line", "section", "map"];
-  console.log(id & 2);
   document.querySelector(".station-manager-page").hidden = !(id & 1);
   document.querySelector(".line-manager-page").hidden = !(id & 2);
   document.querySelector(".section-manager-page").hidden = !(id & 4);
