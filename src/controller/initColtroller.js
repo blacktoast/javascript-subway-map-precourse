@@ -6,6 +6,7 @@ import { checkEmpty, checkInputBlank } from "../utils/check.js";
 import { initRenderLine } from "../render/line/renderLine.js";
 import { initSectionEvent } from "./section/section.js";
 import { initRenderSection } from "../render/section/renderSection.js";
+import { initRenderMap } from "../render/map/renderMap.js";
 function addStation(stations, stationName) {
   stations.push(stationName);
   store.setStation(stations);
@@ -103,6 +104,7 @@ function menuSelectHandler(e) {
       selectMenu(4);
       break;
     case "map":
+      initRenderMap();
       selectMenu(8);
       break;
   }
